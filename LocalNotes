@@ -1,0 +1,13 @@
+This is a clone of Adrian Popa's odroid-backup.pl
+
+I have formatted it in my own personal coding style, so don't expect it to be standard style.  
+
+But that said, it's pretty much the same code as from https://github.com/mad-ady/odroid-backup with a few minor changes.
+
+It's the first perl program I've worked with in a couple of decades, and I had to re-learn perl to read this code and to find
+out why it wasn't working for me.  In the end, the original author fixed my bug before I noticed that it was fixed.  :-)  So this
+turned out to be just a learning process for me.
+
+Looks like Adrian Popa doesn't sport any licence on this code, so I'm assuming it's just for personal use.
+
+Sure do appreciate Adrian Popa's work in writing this code!  Thank you.
