@@ -1,4 +1,5 @@
 #!/usr/bin/perl
+#Editor=Wide load 4:  Set your wide load editor to 4 column tabs, fixed size font.  Suggest Kate (Linux) or Notepad++ (windows).
 
 use strict;
 use warnings;
