@@ -5,36 +5,40 @@ use strict;
 use warnings;
 
 
-use Getopt::Long qw(:config no_ignore_case);	# Extended processing of command line options - ?? where is this called
+use Getopt::Long 	qw(:config no_ignore_case);		# Extended processing of command line options - ?? where is this called
 
-use Data::Dumper;								# stringified perl data structures, suitable for both printing and eval
+use Data::Dumper;									# stringified perl data structures, suitable for both printing and eval
 
-use File::Path qw(make_path);					# Create or remove directory trees
-
-#/home/howard/perl5/lib/perl5/UI/Dialog.pm
+use File::Path 		qw(make_path);					# Create or remove directory trees
 
 
-my $dialog;			# ???
+my $dialog;			# A place to install UI::Dialog when it gets loaded (required below) in checkDependencies subroutine
 my %bin;			# ???
 
 my %dependencies = (
-    'sfdisk' 			=> 'sfdisk',
-    'fsarchiver' 		=> 'fsarchiver',
-    'udevadm' 			=> 'udev',
-    'blockdev' 			=> 'util-linux',
-    'blkid' 			=> 'util-linux',
-    'dd' 				=> 'coreutils',
+#devices:
+    'udevadm' 			=> 'udev',					# Dynamic    device management (device events and status information)
+    'blockdev' 			=> 'util-linux',			# call block device ioctls from the command line
+    'blkid' 			=> 'util-linux',			# Get  block device information and list of any partitions
+
+    'dd' 				=> 'coreutils',				# Linux convert and copy (disk destroyer)
     
-    'partclone.vfat' 	=> 'partclone',
-    'partclone.btrfs' 	=> 'partclone',
-    'partclone.info' 	=> 'partclone',
-    'partclone.restore' => 'partclone',
-    'partprobe' 		=> 'parted',
+    'flash_erase' 		=> 'mtd-utils',				# Use to restore flash drives (Memory Technology Devices [drivers for flash types of memory])
     
-    'flash_erase' 		=> 'mtd-utils',
+#partitions:
+    'sfdisk' 			=> 'sfdisk',				# Gets/Sets partion maps
     
-    'umount' 			=> 'mount',
-    'mount' 			=> 'mount'
+    'fsarchiver' 		=> 'fsarchiver',			# Partion dumper for ext file systems
+    
+    'partclone.vfat' 	=> 'partclone',				# clone and restore a partition
+    'partclone.btrfs' 	=> 'partclone',				# clone and restore a partition
+    'partclone.info' 	=> 'partclone',				# image show 	- show image head information
+    'partclone.restore' => 'partclone',				# image restore	- restore partclone image to device
+    
+    'partprobe' 		=> 'parted',				# inform the OS of partition table changes
+    
+    'umount' 			=> 'mount',					#
+    'mount' 			=> 'mount'					#
 );
 
 
